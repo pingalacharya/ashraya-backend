@@ -1,6 +1,24 @@
 {
   "dependencies": {
     "express": "^4.21.2",
-    "nodemon": "^3.1.9"
-  }
+    "nodemon": "^3.1.9",
+    "slugify": "^1.6.6"
+  },
+  "name": "devforge-backend",
+  "description": "Node JS Backend\r SQL Datbase\r Basic Login api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divyanshuan/devforge-backend.git#ashraya"
+  },
+  "author": "Souhardya Dutta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divyanshuan/devforge-backend/issues"
+  },
+  "homepage": "https://github.com/divyanshuan/devforge-backend/tree/ashraya#readme"
 }
