@@ -4,4 +4,3 @@ exports.getUsers = (req, res) => {
     message: 'login',
   });
 };
-

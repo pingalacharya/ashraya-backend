@@ -1,6 +1,6 @@
 const app = require('./index');
 const loginRouter = require('./routes/loginRouter');
-//const schemaRouter = require('./routes/initialSchemaRouter');
+
 require('dotenv').config();
 
 //Connection to database
@@ -27,7 +27,6 @@ sequelize
 
 //Routers
 app.use('/api/users/login', loginRouter);
-//app.use('/api/users/schema', schemaRouter);
 
 const port = process.env.PORT;
 
