@@ -1,6 +1,6 @@
 require('dotenv').config();
 const app = require('./index');
-const loginRouter = require('./routes/loginRouter');
+const loginRouter = require('./routes/UserRouter');
 const sequelize = require('./db'); // Reuse Sequelize instance from db.js
 const User = require('./Models/user.model');
 
@@ -25,7 +25,7 @@ sequelize
   });
 
 // Routers
-app.use('/api/users/login', loginRouter);
+app.use('/api/users', loginRouter);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

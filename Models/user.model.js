@@ -39,4 +39,5 @@ const User = sequelize.define(
     updatedAt: 'updated_at', // Custom name for updatedAt field
   }
 );
+
 module.exports = User;
