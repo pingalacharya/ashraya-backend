@@ -5,7 +5,7 @@ const router = express.Router();
 router.route('/login').put(userController.loginUser);
 router
   .route('/signup')
-  .put(userController.registerUser)
+  .post(userController.registerUser)
   .get(userController.logoutUser);
 router.route('/auth').get(userController.authUser);
 
