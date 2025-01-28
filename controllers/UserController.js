@@ -160,3 +160,95 @@ exports.authUser = async (req, res) => {
     },
   });
 };
+
+// Delete the account for existing user
+
+exports.deleteUser = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find user by email
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        data: {
+          message: 'User Not Found',
+        },
+      });
+    }
+
+    const delUser = await User.destroy({ where: { email } });
+
+    // Delete the token stored in cookie
+    return res
+      .status(200)
+      .clearCookie('token')
+      .json({
+        status: 'ok',
+        data: {
+          message: 'User Deleted',
+          user: delUser,
+        },
+      });
+  } catch (err) {
+    res.status(501).json({
+      status: 'error',
+      data: {
+        message: 'Server Error',
+        error: err,
+      },
+    });
+  }
+};
+
+// Update an existing user
+
+exports.updateUser = async (req, res) => {
+  const { email, username } = req.body;
+
+  try {
+    // Find user by email
+    var user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        data: {
+          message: 'User Not Found',
+        },
+      });
+    }
+
+    user = await User.findOne({ where: { username } });
+
+    //check is username alrady exists
+    if (user) {
+      return res.status(406).json({
+        status: 'error',
+        data: {
+          message: 'Username Already Exist',
+        },
+      });
+    }
+
+    const updateUser = await User.update({ username }, { where: { email } });
+
+    return res.status(200).json({
+      status: 'ok',
+      data: {
+        message: 'Update Successful',
+        user: updateUser,
+      },
+    });
+  } catch (err) {
+    res.status(501).json({
+      status: 'error',
+      data: {
+        message: 'Server Error',
+        error: err,
+      },
+    });
+  }
+};
